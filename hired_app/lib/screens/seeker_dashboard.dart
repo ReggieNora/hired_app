@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'browse_screen.dart';
 
 class SeekerDashboard extends StatefulWidget {
   const SeekerDashboard({super.key});
@@ -12,7 +12,7 @@ class _SeekerDashboardState extends State<SeekerDashboard> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    Center(child: Text('Browse Jobs')),
+    BrowseScreen(), // ← Use your actual browse screen here
     Center(child: Text('Saved Jobs')),
     Center(child: Text('My Resume')),
     Center(child: Text('Settings')),
@@ -31,7 +31,7 @@ class _SeekerDashboardState extends State<SeekerDashboard> {
         title: const Text('Hired'),
         centerTitle: true,
       ),
-      body: _pages[_selectedIndex],
+      body: _pages[_selectedIndex], // ← This will now work correctly
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
