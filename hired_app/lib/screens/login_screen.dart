@@ -1,56 +1,50 @@
 import 'package:flutter/material.dart';
-import 'signup_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  String _userType = 'seeker'; // default selection
-
-  void _navigateToSignup() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => SignupScreen(userType: _userType),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ToggleButtons(
-            isSelected: [_userType == 'seeker', _userType == 'employer'],
-            onPressed: (int index) {
-              setState(() {
-                _userType = index == 0 ? 'seeker' : 'employer';
-              });
-            },
-            children: const [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text('Job Seeker'),
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Welcome Back',
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text('Employer'),
+              const SizedBox(height: 32),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+              ),
+              const SizedBox(height: 32),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/home');
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: const Text('Login'),
               ),
             ],
           ),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: _navigateToSignup,
-            child: const Text('Continue'),
-          ),
-        ],
+        ),
       ),
     );
   }

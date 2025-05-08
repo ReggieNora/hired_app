@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
-import 'screens/signup_screen.dart';
-import 'screens/seeker_dashboard.dart';
-import 'screens/employer_dashboard.dart';
+import 'screens/home_screen.dart';
 
 void main() {
-  runApp(const HiredApp());
+  runApp(const MyApp());
 }
 
-class HiredApp extends StatelessWidget {
-  const HiredApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hired',
+      title: 'Card Stack App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
+        primarySwatch: Colors.deepPurple,
+        scaffoldBackgroundColor: const Color(0xFFF6EFF5),
       ),
-      home: const LoginScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginScreen(),
+        '/home': (context) => const HomeScreen(),
+      },
     );
   }
 }
